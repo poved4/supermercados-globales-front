@@ -1,0 +1,69 @@
+<main class="d-flex justify-content-center align-items-center full-screen">
+
+  <div class="container bg-light rounded-3 m-5 p-5 box-shadow-singIn container-signIn">
+    <div class="row">
+
+      <div class="col d-flex flex-column align-items-center justify-content-around">
+        <figure class="m-0">
+          <img src="assets/imgs/signin-image.jpg" alt="sing up image">
+        </figure>
+        <a [routerLink]="['/signUp']" routerLinkActive="router-link-active" class="text-sm-cente text-dark mt-5">
+          Create an account
+        </a>
+      </div>
+
+      <div class="col d-flex flex-column align-items-center justify-content-around">
+
+        <h2 class="mb-5 fw-bold">Sign in</h2>
+
+        <form method="POST" class="register-form" id="login-form">
+          <div class="mb-4 overflow-hidden position-relative">
+            <label for="your_name"><i class="bi bi-person-fill"></i></label>
+            <input type="text" name="your_name" id="your_name" placeholder="Your Name">
+          </div>
+          <div class="mb-4 overflow-hidden position-relative">
+            <label for="your_pass"><i class="bi bi-lock-fill"></i></label>
+            <input type="password" name="your_pass" id="your_pass" placeholder="Password">
+          </div>
+          <div class="mb-4 overflow-hidden position-relative">
+            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term">
+            <label for="remember-me" class="label-agree-term">
+              <span>
+                <!-- <span><i class="bi bi-check"></i></span> -->
+              </span>
+              Remember me
+            </label>
+          </div>
+          <div class="mb-0 overflow-hidden position-relative">
+            <input type="submit" name="signin" id="signin" class="form-submit mt-3 py-2 px-5 text-light fw-bold"
+              value="Log in">
+          </div>
+        </form>
+
+        <div class="d-flex align-items-center mt-5">
+          <span class="me-3">Or login with</span>
+          <ul class="d-flex list-unstyled m-0 p-0">
+            <li class="mx-1 anim-size">
+              <a href="#" class="text-decoration-none">
+                <i class="bi bi-facebook d-block rounded text-light text-center bg-facebook icon"></i>
+              </a>
+            </li>
+            <li class="mx-1 anim-size">
+              <a href="#" class="text-decoration-none">
+                <i class="bi bi-twitter d-block rounded text-light text-center bg-twitter icon"></i>
+              </a>
+            </li>
+            <li class="mx-1 anim-size">
+              <a href="#" class="text-decoration-none">
+                <i class="bi bi-google d-block rounded text-light text-center bg-google icon"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</main>
