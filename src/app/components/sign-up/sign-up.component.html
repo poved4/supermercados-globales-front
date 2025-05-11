@@ -1,0 +1,51 @@
+<main class="flex-center full-screen">
+
+  <div class="container bg-light rounded-3 m-5 p-5 box-shadow-singIn container-signUp">
+    <div class="row">
+
+      <div class="col d-flex flex-column align-items-center justify-content-around">
+
+        <h2 class="mb-5 fw-bold">Sign up</h2>
+
+        <form method="POST" class="register-form" id="register-form">
+          <div class="form-group">
+            <label for="name"><i class="bi bi-person-fill"></i></label>
+            <input type="text" name="name" id="name" placeholder="Your Name">
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="bi bi-envelope-open-fill"></i></label>
+            <input type="email" name="email" id="email" placeholder="Your Email">
+          </div>
+          <div class="form-group">
+            <label for="pass"><i class="bi bi-lock-fill"></i></label>
+            <input type="password" name="pass" id="pass" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label for="re-pass"><i class="bi bi-lock"></i></label>
+            <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password">
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term">
+            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in <a
+                href="#" class="term-service">Terms of service</a></label>
+          </div>
+          <div class="form-group form-button">
+            <input type="submit" name="signup" id="signup" class="form-submit" value="Register">
+          </div>
+        </form>
+
+      </div>
+
+      <div class="col d-flex flex-column align-items-center justify-content-around">
+        <figure class="m-0">
+          <img src="assets/img/signup-image.jpg" alt="sing up image">
+        </figure>
+        <a [routerLink]="['/']" routerLinkActive="router-link-active" class="text-sm-cente text-dark mt-5">
+          I am already member
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</main>
