@@ -26,10 +26,26 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
+## Angular
+
+### correr la aplicacion
+```
+ng s
+```
+
+### construir la aplicacion
+```
+npm run build --prod
+```
+
 ## docker
 
-Construir la imagen
-`docker build -t -d supermercados-globales .`
+### Construir la imagen
+```
+docker build -t supermercados-globales .
+```
 
-Ejecutar el contenedor:
-`docker run -p 80:80 supermercados-globales`
+### build container:
+```
+docker run -d --name frontSG --network=ing_software_ii -p 80:80 supermercados-globales
+```
