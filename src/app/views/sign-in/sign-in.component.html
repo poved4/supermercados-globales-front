@@ -1,0 +1,30 @@
+<main role="main" class="d-flex justify-content-center align-items-center vw-100 min-vh-100">
+
+  <div class="container bg-light rounded-3 m-5 p-5 container-shadow" style="max-width: 800px;">
+    <div class="row">
+
+      <div class="col d-flex flex-column align-items-center justify-content-around">
+
+        <figure class="m-0">
+          <img src="assets/img/signin-image.jpg" class="img-fluid" alt="sing up image">
+        </figure>
+
+        <a [routerLink]="['/signUp']" routerLinkActive="router-link-active"
+          class="text-sm-cente text-dark mt-5 link-form">
+          Create an account
+        </a>
+
+      </div>
+
+      <div class="col d-flex flex-column align-items-center justify-content-around">
+
+        <app-sign-in-form></app-sign-in-form>
+
+        <app-social-media></app-social-media>
+
+      </div>
+
+    </div>
+  </div>
+
+</main>
