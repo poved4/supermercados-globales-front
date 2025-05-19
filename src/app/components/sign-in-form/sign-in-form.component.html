@@ -1,0 +1,63 @@
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    <legend class="h2 text-center fw-bold mb-4">Sign in</legend>
+
+    <div class="position-relative mb-4">
+
+      <label for="email" class="input-label">
+        <i class="bi bi-envelope"></i>
+      </label>
+
+      <input
+        id="email" type="email" formControlName="email"
+        placeholder="name@example.com" class="input-form"
+      >
+
+      @if (signInForm.get('email')?.invalid && (signInForm.get('email')?.dirty || signInForm.get('email')?.touched)) {
+      <span class="text-danger">
+        @if (signInForm.get('email')?.hasError('required')) { email is required }
+        @if (signInForm.get('email')?.hasError('email')) { enter a valid email }
+      </span>
+      }
+
+    </div>
+
+    <div class="position-relative mb-4">
+
+      <label for="password" class="input-label">
+        <i class="bi bi-lock"></i>
+      </label>
+
+      <input
+        id="password" type="password" formControlName="password"
+        placeholder="Password" class="input-form"
+      >
+
+      @if (passwordControl?.invalid && (passwordControl?.dirty || passwordControl?.touched)) {
+      <span class="text-danger">
+        @if (signInForm.get('password')?.hasError('required')) { La contraseña es requerida. }
+        @if (signInForm.get('password')?.hasError('pattern')) { La contraseña debe contener al menos una mayúscula, una minúscula, un número. }
+      </span>
+      }
+
+    </div>
+
+    <!-- <div class="position-relative mb-4">
+      <input type="checkbox" name="remember-me" id="remember-me" class="d-inline-block w-auto">
+      <label class="input-label position-relative top-0 translate-middle-y-0" for="remember-me">
+        <span></span>
+        Remember me
+      </label>
+    </div> -->
+
+    <div class="position-relative mb-0">
+      <input
+        type="submit" value="Log In"
+        [disabled]="!signInForm.valid"
+        class="btn btn-primary fw-bold w-auto mt-3 py-2 px-5"
+      >
+    </div>
+
+  </fieldset>
+</form>

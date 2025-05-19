@@ -1,0 +1,22 @@
+.bg-facebook {
+  background: #3b5998;
+}
+
+.bg-twitter {
+  background: #1da0f2;
+}
+
+.bg-google {
+  background: #e72734;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  transform: translateZ(0);
+  transition: transform 0.3s ease-out;
+}
+
+.anim-size:hover .icon {
+  transform: scale(1.3) translateZ(0);
+}
