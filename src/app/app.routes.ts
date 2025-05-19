@@ -1,20 +1,27 @@
 import { Routes } from '@angular/router';
 
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { SignUpComponent } from './views/sign-up/sign-up.component';
+import { SignInComponent } from './views/sign-in/sign-in.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: SignInComponent,
+    redirectTo: 'signIn',
+    pathMatch: 'full'
+  },
+  {
+    path: 'signIn',
+    component: SignInComponent
   },
   {
     path: 'signUp',
-    component: SignUpComponent,
+    component: SignUpComponent
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [authGuard]
   }
 ];
