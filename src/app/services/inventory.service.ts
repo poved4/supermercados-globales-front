@@ -1,4 +1,4 @@
-import { map, Observable, of, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -14,7 +14,7 @@ export class InventoryService {
   private http = inject(HttpClient);
   private storage = inject(LocalStorageServiceService);
 
-  private get(): Observable<Inventory[]> {
+  getById(id: number): Observable<Inventory[]> {
 
     const token = this.storage.getItem(env.storage.accessToken);
 
@@ -23,38 +23,9 @@ export class InventoryService {
     });
 
     return this.http.get<Inventory[]>(
-      `${env.apiUrl}/api/v1/inventory`,
+      `${env.apiUrl}/api/v1/inventory/branch/${id}`,
       { headers }
     );
-
-  }
-
-  getAll(): Observable<Inventory[]> {
-
-    const savedData = this.storage.getItem(env.storage.inventory);
-    if (savedData !== null && savedData.length > 0) {
-      return of(JSON.parse(savedData));
-    }
-
-    return this.get()
-      .pipe(
-        tap(data => {
-          if (data.length > 0) {
-            this.storage.setItem(env.storage.inventory, JSON.stringify(data));
-          }
-        })
-      );
-
-  }
-
-  getById(id: number): Observable<Inventory | undefined> {
-
-    return this.getAll()
-      .pipe(
-        map(item =>
-          item.find(x => x.id === id)
-        )
-      );
 
   }
 
