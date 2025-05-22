@@ -14,6 +14,21 @@ export class AuthService {
   private http = inject(HttpClient);
   private storage = inject(LocalStorageServiceService);
 
+  sessionValidation(): Observable<any> {
+
+    const token = this.storage.getItem(env.storage.accessToken);
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any[]>(
+      `${env.apiUrl}/api/v1/auth`,
+      { headers }
+    );
+
+  }
+
   logOut(): Observable<any> {
 
     const jwt = JSON.parse(
@@ -29,11 +44,11 @@ export class AuthService {
       null,
       { headers }
     )
-    .pipe(
-      tap(body => {
-        this.storage.removeItem(env.storage.accessToken);
-      })
-    );
+      .pipe(
+        tap(body => {
+          this.storage.removeItem(env.storage.accessToken);
+        })
+      );
 
   }
 
@@ -50,14 +65,14 @@ export class AuthService {
       `${env.apiUrl}/api/v1/auth/signIn`,
       requestBody
     )
-    .pipe(
-      tap(body => {
-        this.storage.setItem(
-          env.storage.accessToken,
-          JSON.stringify(body.accessToken)
-        );
-      })
-    );
+      .pipe(
+        tap(body => {
+          this.storage.setItem(
+            env.storage.accessToken,
+            JSON.stringify(body.accessToken)
+          );
+        })
+      );
 
   }
 
