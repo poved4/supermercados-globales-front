@@ -1,0 +1,35 @@
+<table class="table table-hover table-striped table-borderless align-middle p-0 m-0">
+
+  <thead>
+    <tr class="text-center text-lowercase fw-bold">
+      <th>codigo</th>
+      <th>producto</th>
+      <th>categoria</th>
+      <th>stock</th>
+      <th>precio de venta</th>
+      <!-- <th scope="col">acciones</th> -->
+    </tr>
+  </thead>
+
+  <tbody class="table-group-divider">
+
+    <tr *ngFor="let it of inventory" class="fw-normal">
+
+      <th class="text-center">{{it.pCode}}</th>
+      <th>{{it.pName}}</th>
+      <th>{{it.pCategory}}</th>
+
+      <th class="text-center" tabindex="0" data-bs-toggle="tooltip" title="min: {{it.stockMin}}, max: {{it.stockMax}}"
+        [ngClass]="{
+                    'text-warning': it.stockTextWarning,
+                    'text-danger': it.stockTextDanger
+                  }">
+        {{it.stock}}
+      </th>
+
+      <th class="text-center">{{it.salesPrice}}</th>
+      <!-- <th scope="col" colspan="2">        </th> -->
+    </tr>
+
+  </tbody>
+</table>
