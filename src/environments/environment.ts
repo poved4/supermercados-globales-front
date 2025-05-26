@@ -1,6 +1,6 @@
 export const environment = {
 
-  apiUrl: 'http://microservice-1095523925810.us-central1.run.app',
+  apiUrl: 'https://supermercados-globales-microservice-1095523925810.europe-west1.run.app',
 
   storage: {
     accessToken: 'SG_ACCESS_TOKEN',
