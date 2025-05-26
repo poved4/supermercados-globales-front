@@ -1,12 +1,12 @@
 export const environment = {
 
-  apiUrl: 'http://microservice-1095523925810.us-central1.run.app',
+  apiUrl: 'http://127.0.0.1:8080',
 
   storage: {
     accessToken: 'SG_ACCESS_TOKEN',
     brach: 'SG_BRANCHES',
     product: 'SG_PRODUCT',
-    orderStatus: 'SG_ORDER_STATUS'
+    orderStatus: 'SG_ORDER_STATUS',
   }
 
 };
