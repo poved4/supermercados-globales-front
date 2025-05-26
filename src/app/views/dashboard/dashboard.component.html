@@ -1,40 +1,6 @@
-<main>
-  <div class="d-flex flex-column w-100 vh-100">
+<main class="d-flex flex-column vh-100">
 
-    <div>
-      <app-navbar></app-navbar>
-    </div>
+  <app-navbar></app-navbar>
+  <app-tabs class="flex-fill"></app-tabs>
 
-    <div class="d-flex flex-column align-items-center flex-fill">
-
-      <div class="d-flex bg-light rounded my-3 p-2 w-100 max-width-90 shadow">
-
-        <div>
-          <button>inventarios</button>
-          <button>ordenes</button>
-        </div>
-
-        <select (change)="onBranchChange($event)" [(ngModel)]="selectedBranchId" class="w-25 form-select">
-          <option *ngFor="let branch of branches" [value]="branch.id">
-            {{branch.name}}
-          </option>
-        </select>
-
-      </div>
-
-      <div class="flex-fill bg-light rounded my-3 p-3 w-100 max-width-90 shadow">
-
-        <ng-template [ngIf]="inventory.length === 0" [ngIfElse]="elseBlock">
-          <app-no-data></app-no-data>
-        </ng-template>
-
-        <ng-template #elseBlock>
-          <app-inventory-table [inventory]="inventory"></app-inventory-table>
-        </ng-template>
-
-      </div>
-
-    </div>
-
-  </div>
 </main>
