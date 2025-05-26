@@ -1,4 +1,4 @@
-import { map, Observable, of, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -14,7 +14,7 @@ export class OrderService {
   private http = inject(HttpClient);
   private storage = inject(LocalStorageServiceService);
 
-  private get(): Observable<Order[]> {
+  public getOrdersByBranch(id: number): Observable<Order[]> {
 
     const token = this.storage.getItem(env.storage.accessToken);
 
@@ -23,40 +23,10 @@ export class OrderService {
     });
 
     return this.http.get<Order[]>(
-      `${env.apiUrl}/api/v1/orders`,
+      `${env.apiUrl}/api/v1/orders/branch/${id}`,
       { headers }
     );
 
   }
-
-  getAll(): Observable<Order[]> {
-
-    const savedData = this.storage.getItem(env.storage.order);
-    if (savedData !== null && savedData.length > 0) {
-      return of(JSON.parse(savedData));
-    }
-
-    return this.get()
-      .pipe(
-        tap(data => {
-          if (data.length > 0) {
-            this.storage.setItem(env.storage.order, JSON.stringify(data));
-          }
-        })
-      );
-
-  }
-
-  getById(id: number): Observable<Order | undefined> {
-
-    return this.getAll()
-      .pipe(
-        map(item =>
-          item.find(x => x.id === id)
-        )
-      );
-
-  }
-
 
 }
