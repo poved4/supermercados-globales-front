@@ -1,35 +1,42 @@
-<table class="table table-hover table-striped table-borderless align-middle p-0 m-0">
+<ng-template [ngIf]="inventory.length === 0" [ngIfElse]="elseBlock">
+  <app-no-data></app-no-data>
+</ng-template>
 
-  <thead>
-    <tr class="text-center text-lowercase fw-bold">
-      <th>codigo</th>
-      <th>producto</th>
-      <th>categoria</th>
-      <th>stock</th>
-      <th>precio de venta</th>
-      <!-- <th scope="col">acciones</th> -->
-    </tr>
-  </thead>
+<ng-template #elseBlock>
+  <table class="table table-hover table-striped table-borderless align-middle p-0 m-0">
 
-  <tbody class="table-group-divider">
+    <thead class="container m-0 p-0">
+      <tr class="row text-center text-capitalize fw-bold">
+        <th class="col">código</th>
+        <th class="col-3">producto</th>
+        <th class="col-3">categoría</th>
+        <th class="col">stock min</th>
+        <th class="col">stock</th>
+        <th class="col">stock max</th>
+        <th class="col">costo unitario</th>
+      </tr>
+    </thead>
 
-    <tr *ngFor="let it of inventory" class="fw-normal">
+    <tbody class="table-group-divider container m-0 p-0">
+      <tr class="row" *ngFor="let it of inventory">
 
-      <th class="text-center">{{it.pCode}}</th>
-      <th>{{it.pName}}</th>
-      <th>{{it.pCategory}}</th>
+        <th class="col text-center">{{it.product.code}}</th>
+        <th class="col-3 text-capitalize">{{it.product.name}}</th>
+        <th class="col-3 text-capitalize">{{it.product.category.name}}</th>
 
-      <th class="text-center" tabindex="0" data-bs-toggle="tooltip" title="min: {{it.stockMin}}, max: {{it.stockMax}}"
-        [ngClass]="{
-                    'text-warning': it.stockTextWarning,
-                    'text-danger': it.stockTextDanger
-                  }">
-        {{it.stock}}
-      </th>
+        <th class="col text-center">{{it.stockMin}}</th>
+        <th class="col text-center" tabindex="0" data-bs-toggle="tooltip"
+          title="min: {{it.stockMin}}, max: {{it.stockMax}}" [ngClass]="{
+          'text-warning': it.stockTextWarning,
+          'text-danger': it.stockTextDanger
+        }">
+          {{it.stock}}
+        </th>
+        <th class="col text-center">{{it.stockMax}}</th>
 
-      <th class="text-center">{{it.salesPrice}}</th>
-      <!-- <th scope="col" colspan="2">        </th> -->
-    </tr>
+        <th class="col text-center">{{it.salesPrice}}</th>
+      </tr>
+    </tbody>
 
-  </tbody>
-</table>
+  </table>
+</ng-template>
