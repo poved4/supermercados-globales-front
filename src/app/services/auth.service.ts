@@ -1,4 +1,4 @@
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -14,9 +14,22 @@ export class AuthService {
   private http = inject(HttpClient);
   private storage = inject(LocalStorageServiceService);
 
+  private authenticated = new BehaviorSubject<boolean>(false);
+  public readonly isAuthenticated$: Observable<boolean> = this.authenticated.asObservable();
+
+  getAuthenticated(): boolean {
+    return this.authenticated.getValue();
+  }
+
+  setAuthenticated(newValue: boolean) {
+    console.log(newValue);
+    this.authenticated.next(newValue);
+  }
+
   sessionValidation(): Observable<any> {
 
     const token = this.storage.getItem(env.storage.accessToken);
+    this.setAuthenticated(token !== null && token.length > 0);
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -47,6 +60,7 @@ export class AuthService {
       .pipe(
         tap(body => {
           this.storage.removeItem(env.storage.accessToken);
+          this.setAuthenticated(false);
         })
       );
 
@@ -67,10 +81,14 @@ export class AuthService {
     )
       .pipe(
         tap(body => {
+
           this.storage.setItem(
             env.storage.accessToken,
             JSON.stringify(body.accessToken)
           );
+
+          this.setAuthenticated(body.accessToken.length > 0);
+
         })
       );
 

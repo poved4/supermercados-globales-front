@@ -1,6 +1,12 @@
-<main class="d-flex flex-column vh-100">
+<ng-template [ngIf]="!authenticated" [ngIfElse]="elseBlock">
+  <app-sign-in></app-sign-in>
+</ng-template>
 
-  <app-navbar></app-navbar>
-  <app-tabs class="flex-fill"></app-tabs>
+<ng-template #elseBlock>
+  <main class="d-flex flex-column vh-100">
 
-</main>
+    <app-navbar></app-navbar>
+    <app-tabs class="flex-fill"></app-tabs>
+
+  </main>
+</ng-template>
