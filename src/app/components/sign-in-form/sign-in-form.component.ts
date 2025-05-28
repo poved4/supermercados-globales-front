@@ -38,7 +38,7 @@ export class SignInFormComponent {
         next: (response) => {
 
           this.signInForm.reset();
-          this.router.navigateByUrl('dashboard');
+          this.router.navigateByUrl('/dashboard');
 
         },
         error: (error) => {

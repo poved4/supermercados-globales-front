@@ -35,7 +35,7 @@ ng s
 
 ### construir la aplicacion
 ```
-npm run build --prod
+npm run build --prod --omit=dev
 ```
 
 ## docker
